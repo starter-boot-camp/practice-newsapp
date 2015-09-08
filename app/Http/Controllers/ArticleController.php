@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Article;
+use App\Article;    
 class ArticleController extends Controller
 {
     /**
@@ -28,6 +28,7 @@ class ArticleController extends Controller
     public function create()
     {
         //
+        return view('articles.create');
     }
 
     /**
@@ -39,6 +40,11 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //
+        $article = new Article();
+        $article->title = $request->input('title');
+        $article->content = $request->input('content');
+        $article->save();
+        return redirect('/articles');
     }
 
     /**
